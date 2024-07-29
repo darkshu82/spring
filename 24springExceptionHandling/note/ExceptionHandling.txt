@@ -1,0 +1,16 @@
+
+ExceptionHandling
+  web application 에서 오류 발생시 보여줄 jsp 를 작성하고
+  이 jsp 로 응답결과를 생성해서 client 의 browser 로 전송함
+  
+  @ExceptionHandler 가 설정된 메소드는 Contraller 마다 작성해야 됨.
+  
+  Gloval
+
+
+
+
+
+
+
+

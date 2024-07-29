@@ -1,0 +1,11 @@
+
+ValidationCustomMessage
+
+Size.developer.name=이름은 2 글자에서 4 글자 사이로만 입력해주세요.
+Max.devleloper.age=나이는 150 세 이하로만 입력해주세요.
+
+<spring:message
+
+
+
+

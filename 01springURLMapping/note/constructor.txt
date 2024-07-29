@@ -1,0 +1,7 @@
+@AllargsConstructor
+ㄴ 모든 멤버 변수를 parameter로 하는 생성자
+@NoArgsConstructor
+ㄴ 기본 생성자
+@RequierdArgsConstructor
+ㄴ final 멤버 변수를  parameter로 하는 생성자
+

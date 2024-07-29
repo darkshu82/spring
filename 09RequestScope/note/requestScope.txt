@@ -1,0 +1,51 @@
+
+RequestScope
+  새로운 request 가 발생해서 이 응답결과(response가
+  다시 client 측의 browser 로 전달될 때까지의
+  요청(request) 정보가 저장된
+  request 객체(HttpServletRequest 객체) 를
+  사용할 수 있는 메모리 영역
+  
+@Autowired 어노테이션을 사용하면
+Bean(Spring Framework 가 자동으로 객체를 생성해 주는 클래스)
+으로 자동으로 주입받음
+  ㄴ 멤버변수로 선언할 때 @Autowired 어노테이션을 사용하면
+     자동으로 객체가 생성되고 이 주소가 멤버변수에 할당됨.
+       ㄴ Injection
+     @Aurowired
+     Student student; (<-- = new Student();)
+     
+     cf. parameter 로 선언할 때는
+        @ModelAttribute 어노테이션의 의해서 Injection 됨.
+        (이 때, @ModelAttribute 는 생략할 수 있음)
+        
+  Bean 을 정의할 때
+  scope 를 request 로 하면
+  client 로부터 request 가 올 때마다
+  server에서,
+  Spring Framwork 가 Bean 객체를 
+  자동으로 생성해서 멤버 변수에 Injection(주입) 해 줌.
+  
+  xml 설정방식에서 bean 을 정의하면서
+  byName 으로 주입받으면 request 영역에 자동으로 저장됨.
+  
+  Java 설정방식에서는
+  @RequestScope 어노테이션을 사용함.
+  
+  Xml 설정방식에서는
+  scope="request" 라고 설정함.
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   
+
+
+

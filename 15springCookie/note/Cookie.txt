@@ -1,0 +1,6 @@
+Cookie
+
+client 의 browser 가 최초로
+server쪽으로 request를 보내면
+server가 client(browser)쪽으로 response를 보낼 때
+cookie를 싫어서 보내고 cookie는 client의 browser에 저장됨.
