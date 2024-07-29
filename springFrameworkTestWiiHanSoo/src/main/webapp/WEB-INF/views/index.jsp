@@ -12,31 +12,47 @@
     <button type="button" onclick="location.href='problem01'">problem01</button><br>
     <button type="button" onclick="location.href='problem02?nums=1&nums=2&nums=3&nums=4&nums=5'">problem02</button><br>
     <form action="problem03" method="post">
-      <input type="text" value="1"><br>
-      <input type="text" value="2"><br>
-      <input type="text" value="3"><br>
-      <input type="text" value="4"><br>
-      <input type="text" value="5"><br>
+      <input type="checkbox" name="nums" value="1"> 1 
+      <input type="checkbox" name="nums" value="2"> 2 
+      <input type="checkbox" name="nums" value="3"> 3 
+      <input type="checkbox" name="nums" value="4"> 4 
+      <input type="checkbox" name="nums" value="5"> 5 <br> 
       <input type="submit" value="problem03"><br>
     </form>
+    <form action="problem04" method="post">
+      몸무게 : <input type="text" name="weight"><br>
+      신  장 : <input type="text" name="height"><br>
+      <input type="submit" value="problem04 BMI"><br>
+    </form>
     <form action="problem05" method="post">
-      몸무게 : <input type="text" name="c"><br>
-        키   : <input type="text" name="weight"><br>
-      <input type="submit" value="problem04"><br>
+      몸무게 : <input type="text" name="weight"><br>
+      신  장 : <input type="text" name="height"><br>
+      <input type="submit" value="problem05 BMI"><br>
     </form>
-    <button type="button" onclick="location.href='problem05'">problem05</button><br>
-    <button type="button" onclick="location.href='problem06'">problem06</button><br>
-    <button type="button" onclick="location.href='problem07'">problem07</button><br>
-    <button type="button" onclick="location.href='problem08'">problem08</button><br>
+    <form action="problem06" method="post">
+      몸무게 : <input type="text" name="weight"><br>
+      신  장 : <input type="text" name="height"><br>
+      <input type="submit" value="problem06 BMI"><br>
+    </form>
+    <form action="problem07" method="post">
+      몸무게 : <input type="text" name="weight"><br>
+      신  장 : <input type="text" name="height"><br>
+      <input type="submit" value="problem07 BMI"><br>
+    </form>
+    <form action="problem08" method="post">
+    출력할 단수 : <input type="text" name="dan"><br>
+    <input type="submit" value="problem08 구구단" > 
+    </form>
     <button type="button" onclick="location.href='problem09?name=더조은&address=종로&age=23&favoriteSubjects=자바&favoriteSubjects=스프링&favoriteSubjects=오라클'">problem09</button><br>
-    <button type="button" onclick="location.href='problem10'">problem10</button><br>
-    
-    
-    <form action="abc" method="post">
-    	이름 : <input type="text" name="name" value="이순신">
-    	주소 : <input type="text" name="address" value="서울">
-    	<input type="submit" value="전송">
-    </form>
+    <form action="problem10" method="post">
+    이 름 : <input type="text" name="name"><br>
+    주 소 : <input type="text" name="address"><br>
+    나 이 : <input type="text" name="age"><br>
+    과 목 : <input type="checkbox" name="favoriteSubjects" value="자바"> 자바 
+		    <input type="checkbox" name="favoriteSubjects" value="스프링"> 스프링
+		    <input type="checkbox" name="favoriteSubjects" value="오라클"> 오라클 <br>
+		    <input type="submit" value="problem10" > 
+  </form>
     
     <img src="images/tjoeun.png" />
   </body>
