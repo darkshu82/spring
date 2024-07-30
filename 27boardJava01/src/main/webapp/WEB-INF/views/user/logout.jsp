@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="root" value="${pageContext.request.contextPath}/" />     
 <!DOCTYPE html>
 <html>
   <head>
@@ -8,9 +10,9 @@
   	<title>title</title>
   </head>
   <body>
-  	<h1>test2</h1>
-  	<h2>result = ${ result }</h2>
-  	<br>
-  	<button type="button" onclick="history.back()">이전 페이지</button>
+  	<script type="text/javascript">
+  	  alert("로그아웃 하셨습니다!!!");
+  	  location.href="${root}main";
+  	</script>
   </body>
 </html>

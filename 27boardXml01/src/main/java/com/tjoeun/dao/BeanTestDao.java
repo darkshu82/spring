@@ -7,9 +7,4 @@ public class BeanTestDao {
 	public String method1() {
 		return "BeanTestDao";
 	}
-	
-	
-	
-	
-	
 }
