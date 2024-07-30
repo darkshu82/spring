@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,6 +51,7 @@ public class TestController {
 	}
 	
 	@PostMapping("/problem04")
+	@ResponseBody
 	public String problem04(double height, double weight, Model model) {
 		
 		double bmi = weight / Math.pow(height, 2);
@@ -57,7 +59,7 @@ public class TestController {
 		
 		model.addAttribute("bmi", bmi);
 		
-		return "bmiResult";
+		return "bmi : " + bmi * 10000;
 	}
 	
 	@PostMapping("/problem05")
@@ -80,19 +82,19 @@ public class TestController {
 		double weight = calculateBmi.getWeight();
 		double height = calculateBmi.getHeight();
 		
-		double bmi = weight / Math.pow(height, 2);
+		calculateBmi.setBmi(weight / Math.pow(height, 2));
 		System.out.println("체지방 : " + calculateBmi);
 		return "bmiResult";
 	}
 	
-	@GetMapping("/problem07")
+	@PostMapping("/problem07")
 	public ModelAndView problem07(CalculateBmi calculateBmi, ModelAndView mv) {
 		
 		double weight = calculateBmi.getWeight();
 		double height = calculateBmi.getHeight();
 		
-		double bmi = weight / Math.pow(height, 2);
-		System.out.println("체지방 : " + bmi);
+		calculateBmi.setBmi(weight / Math.pow(height, 2));
+		System.out.println("체지방 : " + calculateBmi);
 		
 		mv.addObject("calculateBmi", calculateBmi);
   	mv.setViewName("bmiResult");
@@ -100,8 +102,11 @@ public class TestController {
 		return mv;
 	}
 	
-	@GetMapping("/problem08")
+	@PostMapping("/problem08")
+	@ResponseBody
 	public String problem08() {
+		
+		StringBuilder result = new StringBuilder();
 		
 		for (int x = 2; x <= 9; x++) {
 			System.out.println(x + "단");
@@ -111,17 +116,20 @@ public class TestController {
 			
 		}
 		
-		return "problem08";
+		return result.toString();
 	}
 	
 	@GetMapping("/problem09")
 	public void problem09(Student student) {
-		System.out.println(student);		
+		System.out.println(student);
 	}
 	
 	@PostMapping("/problem10")
-	public void problem10(Student student) {
-		System.out.println(student);		
+	@ResponseBody
+	public String problem10(@RequestBody Student student) {
+	    System.out.println(student);
+	    return student.toString();
 	}
+
 	
 }

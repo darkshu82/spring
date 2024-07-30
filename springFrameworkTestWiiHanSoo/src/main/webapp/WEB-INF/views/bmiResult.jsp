@@ -9,7 +9,7 @@
   </head>
   <body>
 	<h1>bmiResult</h1>
-    체지방 : ${ bmi * 10000 } <br>
+    체지방 : ${ calculateBmi.bmi * 10000 } <br>
     <button type="button" onclick="history.back()">이전</button>
   </body>
 </html>
