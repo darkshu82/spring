@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/test")
 public class TestController {
-	@GetMapping("/interceptor")
-	public String interceptor(){
-		return "test/interceptor";
+	@GetMapping("/developer")
+	public String developer(){
+		return "test/developer";
+	}   
+	@GetMapping("/officer")
+	public String officer(){
+		return "test/officer";
 	}
-    
 }
 
 

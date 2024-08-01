@@ -31,6 +31,15 @@
 			<li class="nav-item">
 				<a href="${root}user/logout" class="nav-link">로그아웃</a>
 			</li>
+            <li class="nav-item">
+            <a href="${root}test/developer" class="nav-link">개발자</a>
+            </li>
+            <li class="nav-item">
+            <a href="${root}test/officer class="nav-link">경찰관</a>
+            </li>
+            <li class="nav-item">
+            <a href="${root}test/sophomore" class="nav-link">2학년</a>
+            </li>
 		</ul>
 	</div>
 </nav>

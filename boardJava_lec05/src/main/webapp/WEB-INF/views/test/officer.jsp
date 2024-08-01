@@ -10,18 +10,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <h1>test/interceptor.jsp</h1>
-  <h2> 개발자 정보 목록</h2>
-  <p>${developerList }</p>
+  <h1>test/officer.jsp</h1>
+  <h2> 경찰 정보 목록</h2>
+  <p>${officerList }</p>
   <hr>
     <ul class="navbar-nav">
 	
-	    <c:forEach var="developer" items="${developerList }">
-		    <li class="nav-item">
-				${developer.empno} - ${developer.ename} - ${developer.height} - ${developer.weight}
-			</li>
-	    </c:forEach>
-	    
+    <c:forEach var="officer" items="${officerList }">
+    <li class="nav-item">
+		${officer.officerno} - ${officer.officername} - ${officer.deptname} - ${officer.hiredate}
+	</li>
+    </c:forEach>
+    
 	</ul>
 </body>
 </html>

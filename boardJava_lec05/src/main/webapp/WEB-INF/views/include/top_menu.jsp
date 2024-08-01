@@ -34,7 +34,10 @@
 				<a href="${root}user/logout" class="nav-link">로그아웃</a>
 			</li>
 			<li class="nav-item">
-				<a href="${root}test/interceptor" class="nav-link">interceptor test</a>
+				<a href="${root}test/developer" class="nav-link">DeveloperInterceptor</a>
+			</li>
+			<li class="nav-item">
+				<a href="${root}test/officer" class="nav-link">OfficerInterceptor</a>
 			</li>
 		</ul>
 	</div>

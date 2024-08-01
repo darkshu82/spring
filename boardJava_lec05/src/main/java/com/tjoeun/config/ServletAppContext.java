@@ -18,11 +18,14 @@ import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.tjoeun.interceptor.DeveloperInterceptor;
+import com.tjoeun.interceptor.OfficerInterceptor;
 import com.tjoeun.interceptor.TopMenuInterceptor;
 import com.tjoeun.mapper.BoardMapper;
 import com.tjoeun.mapper.DeveloperMapper;
+import com.tjoeun.mapper.OfficerMapper;
 import com.tjoeun.mapper.TopMenuMapper;
 import com.tjoeun.service.DeveloperService;
+import com.tjoeun.service.OfficerService;
 import com.tjoeun.service.TopMenuService;
 
 // Spring MVC 프로젝트에 관련된 설정을 하는 클래스
@@ -56,6 +59,9 @@ public class ServletAppContext implements WebMvcConfigurer{
 	
 	@Autowired
 	private DeveloperService developerService;
+	
+	@Autowired
+	private OfficerService officerService;
 	
 	
 	// Controller 의 메소드가 반환하는 jsp(view) 이름 앞뒤로
@@ -119,6 +125,14 @@ public class ServletAppContext implements WebMvcConfigurer{
 		factoryBean.setSqlSessionFactory(factory);
 		return factoryBean;
 	}
+	
+	@Bean
+	public MapperFactoryBean<OfficerMapper> getOfficerMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<OfficerMapper> factoryBean = 
+				new MapperFactoryBean<>(OfficerMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
 
 	/*
   // Interceptor 등록하기
@@ -145,6 +159,10 @@ public class ServletAppContext implements WebMvcConfigurer{
 		InterceptorRegistration regi2 = registry.addInterceptor(developerInterceptor);
 		regi2.addPathPatterns("/**");
 		
+		OfficerInterceptor officerInterceptor 
+		        = new OfficerInterceptor(officerService);
+		InterceptorRegistration regi3 = registry.addInterceptor(officerInterceptor);
+		regi3.addPathPatterns("/**");
 		
 	}
 }

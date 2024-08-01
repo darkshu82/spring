@@ -98,6 +98,72 @@ CREATE TABLE DEVELOPER(
   WEIGHT    NUMBER(5,2)
 );
 
+CREATE TABLE OFFICER(
+  OFFICERNO		VARCHAR2(4) PRIMARY KEY,
+  OFFICERNAME   VARCHAR2(20) NOT NULL,
+  DEPTNAME      VARCHAR2(20),
+  HIREDATE      VARCHAR2
+);
+
+
+
+1) DATABASE 에 TABLE 생성하기 / INSERT .... 
+    ㄴ DML 작업한 후 반드시 COMMIT; 해 주어야 함
+2) 해당 TABLE 에 MAPPING 되는 BEAN 클래스 작성하기
+3) MAPPER 작성하기
+4) MAPPER 등록하기
+5) INTERCEPTOR / CONTROLLER 에서 
+   request.setAttribute() 로 request scope 에 객체 저장하기
+   
+                 @Controller    @Service   @Repository
+    INTERCEPTOR / CONTROLLER <-> Service <-> DAO <->   Mapper <-> Database
+                    ㄴ (forward OR redirect) / VIEW(jsp)
+   
+6) VIEW 에서 화면에 출력하기   
+
+
+-- today_review 20240731 --
+
+ORACLE database 에 SOPHOMORE_SEQ 시퀀스를 생성하고
+                   SOPHOMORE 테이블을 생성하고                  
+
+DROP SEQUENCE SOPHOMORE_SEQ;
+CREATE SEQUENCE SOPHOMORE_SEQ
+START WITH 1
+INCREMENT BY 1
+MINVALUE 0;
+
+CREATE TABLE SOPHOMORE(
+  STDNO	    VARCHAR2(4) PRIMARY KEY,
+  NAME      VARCHAR2(20) NOT NULL,
+  GRADE     CHAR(1),
+  DEPTNAME  VARCHAR2(30)
+);
+
+INSERT INTO SOPHOMORE VALUES(SOPHOMORE_SEQ.NEXTVAL, '이순신', '2', '인공지능학과');
+INSERT INTO SOPHOMORE VALUES(SOPHOMORE_SEQ.NEXTVAL, '강감찬', '2', '컴퓨터공학과');
+INSERT INTO SOPHOMORE VALUES(SOPHOMORE_SEQ.NEXTVAL, '이율곡', '2', '통계학과');
+INSERT INTO SOPHOMORE VALUES(SOPHOMORE_SEQ.NEXTVAL, '유관순', '2', '빅데이터학과');
+INSERT INTO SOPHOMORE VALUES(SOPHOMORE_SEQ.NEXTVAL, '안중근', '2', '수학과');
+
+COMMIT;
+을 실행하고
+
+boardJava05 프로젝트의 beans 패키지에
+Sophomore 클래스를 Bean 으로 작성하고
+
+
+6, 7 교시 때 Developer 와 Officer 객체를 생성해서
+작성했던 code 를 작성하고 실행해 보세요
+
+
+
+
+
+
+
+
+
 
 
 

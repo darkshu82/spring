@@ -11,15 +11,23 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.tjoeun.interceptor.DeveloperInterceptor;
+import com.tjoeun.interceptor.OfficerInterceptor;
+import com.tjoeun.interceptor.SophomoreInterceptor;
 import com.tjoeun.interceptor.TopMenuInterceptor;
 import com.tjoeun.mapper.BoardMapper;
+import com.tjoeun.mapper.DeveloperMapper;
+import com.tjoeun.mapper.OfficerMapper;
+import com.tjoeun.mapper.SophomoreMapper;
 import com.tjoeun.mapper.TopMenuMapper;
+import com.tjoeun.service.DeveloperService;
+import com.tjoeun.service.OfficerService;
+import com.tjoeun.service.SophomoreService;
 import com.tjoeun.service.TopMenuService;
 
 // Spring MVC 프로젝트에 관련된 설정을 하는 클래스
@@ -30,9 +38,7 @@ import com.tjoeun.service.TopMenuService;
 //                          메모리에 자동으로 Controller 클래스의 객체를 생성함 
 @EnableWebMvc
 // Controller 클래스가 작성된 package 를 자동으로 scan 함
-@ComponentScan("com.tjoeun.controller")
-@ComponentScan("com.tjoeun.service")
-@ComponentScan("com.tjoeun.dao")
+@ComponentScan(basePackages = {"com.tjoeun.controller", "com.tjoeun.service", "com.tjoeun.dao"})
 @PropertySource("/WEB-INF/properties/database.properties")
 public class ServletAppContext implements WebMvcConfigurer{
 	
@@ -51,7 +57,14 @@ public class ServletAppContext implements WebMvcConfigurer{
 	@Autowired
 	private TopMenuService topMenuService;
 	
+	@Autowired
+	private DeveloperService developerService;
 	
+	@Autowired
+	private OfficerService officerService;
+	
+	@Autowired
+	private SophomoreService sophomoreService;
 	
 	// Controller 의 메소드가 반환하는 jsp(view) 이름 앞뒤로
 	// 있는 경로의 접두사, 접미사 설정하기
@@ -107,6 +120,31 @@ public class ServletAppContext implements WebMvcConfigurer{
 		return factoryBean;
 	}
 	
+	@Bean
+	public MapperFactoryBean<DeveloperMapper> getDeveloperMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<DeveloperMapper> factoryBean = 
+				new MapperFactoryBean<>(DeveloperMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<OfficerMapper> getOfficerMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<OfficerMapper> factoryBean = 
+				new MapperFactoryBean<>(OfficerMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<SophomoreMapper> getSophomoreMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<SophomoreMapper> factoryBean = 
+				new MapperFactoryBean<>(SophomoreMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	
 	/*
   // Interceptor 등록하기
 	@Override
@@ -119,16 +157,14 @@ public class ServletAppContext implements WebMvcConfigurer{
 		regi1.addPathPatterns("/**"); 
 	}
   */
-
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		WebMvcConfigurer.super.addInterceptors(registry);
-		 TopMenuInterceptor topMenuInterceptor = new TopMenuInterceptor(topMenuService);
-			InterceptorRegistration regi1 = registry.addInterceptor(topMenuInterceptor);
-			
-			regi1.addPathPatterns("/**"); 
-			
-	}
+	
+	 @Override
+   public void addInterceptors(InterceptorRegistry registry) {
+       registry.addInterceptor(new TopMenuInterceptor(topMenuService)).addPathPatterns("/**");
+       registry.addInterceptor(new DeveloperInterceptor(developerService)).addPathPatterns("/**");
+       registry.addInterceptor(new OfficerInterceptor(officerService)).addPathPatterns("/**");
+       registry.addInterceptor(new SophomoreInterceptor(sophomoreService)).addPathPatterns("/**");
+   }
 
 }
 
