@@ -23,6 +23,15 @@ public class RequestScopeController {
 		return "redirect:result1";
 	}
 	
+	@GetMapping("/result1")
+	public String result1(HttpServletRequest request) {
+		
+		String name = (String)request.getAttribute("name");
+		System.out.printf("이름 : %s%n", name);
+		
+		return "result1";
+	}
+	
 	@GetMapping("/test2")
 	public String test2(HttpServletRequest request) {
 		
@@ -31,17 +40,8 @@ public class RequestScopeController {
 		return "forward:/result2";
 	}
 	
-	@GetMapping("/result1")
-	public String result(HttpServletRequest request) {
-		
-		String name = (String)request.getAttribute("name");
-		System.out.printf("이름 : %s%n", name);
-		
-		return "result1";
-	}
-	
 	@GetMapping("/result2")
-	public String result1(HttpServletRequest request) {
+	public String result2(HttpServletRequest request) {
 		
 		String address = (String)request.getAttribute("address");
 		System.out.printf("주소 : %s%n", address);

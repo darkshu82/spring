@@ -1,7 +1,5 @@
 package com.tjoeun.controller;
 
-
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +10,7 @@ import com.tjoeun.beans.Member;
 
 @Controller
 public class CustomTagController {
-
+	
 	@GetMapping("/test1")
 	public String test1(Member member) {
 		
@@ -55,11 +53,13 @@ public class CustomTagController {
 		
 		System.out.println("member" + member);
 		
-		return "result";
+		return "test3";
 	}
 	
 	@GetMapping("/test4")
 	public String test4(Member member, Model model) {
+		
+		System.out.println("member" + member);
 		
 		member.setUser_name("이순신");
   	member.setUser_id("lee");
@@ -72,18 +72,21 @@ public class CustomTagController {
 		
 		model.addAttribute("student", member);
 		
-		return "result";
+		return "test4";
 	}
 	
 	@GetMapping("/test5")
-	public String test5(Member member, Model model) {
+	public String test5(Model model) {
+		
+		Member member = new Member();
+		System.out.println("member" + member);
 		
 		member.setUser_name("이순신");
-		member.setUser_id("lee");
-		member.setUser_pw("1234");
-		member.setUser_postcode("01023");
-		member.setUser_address1("서울");
-		member.setUser_address2("서울");
+  	member.setUser_id("lee");
+  	member.setUser_pw("1234");
+  	member.setUser_postcode("01023");
+  	member.setUser_address1("서울");
+  	member.setUser_address2("서울");
 		
 		System.out.println("member" + member);
 		
@@ -93,9 +96,13 @@ public class CustomTagController {
 	}
 	
 	
+	
 	@PostMapping("/result")
 	public String result(Member member) {
 		return "result";
 	}
+	
+	
+	
 	
 }
