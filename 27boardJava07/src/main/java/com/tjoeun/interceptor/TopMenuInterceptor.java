@@ -28,7 +28,6 @@ public class TopMenuInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		List<BoardInfoDTO> topMenuList = topMenuService.getTopMenuList();
-		System.out.println("topMenuList (interceptor) : " + topMenuList);
 		request.setAttribute("topMenuList", topMenuList);
 		return true;   
 	}

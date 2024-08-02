@@ -21,5 +21,10 @@ public class UserValidator implements Validator{
 			errors.rejectValue("user_pw2", "NotEquals");
 		}
 		
+		if(userDTO.isUserIdExist() == false) {
+			errors.rejectValue("user_id", "checkUserIdExist");
+		}
+		
+		
 	}
 }

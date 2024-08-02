@@ -20,7 +20,6 @@ public class TopMenuDAO {
 	public List<BoardInfoDTO> getTopMenuList(){
 		// return topMenuMapper.getTopMenuList();
   	List<BoardInfoDTO> topMenuList = topMenuMapper.getTopMenuList();
-  	System.out.println("topMenuList (dao) : " + topMenuList);
   	return topMenuList;
 	}
 	

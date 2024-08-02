@@ -18,7 +18,6 @@ public class RestAPIController {
 		
 		boolean checkUserId = userService.checkUserIdExist(user_id);
 		
-		
 		return "" + checkUserId;
 		
 	}

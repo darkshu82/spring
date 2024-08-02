@@ -10,7 +10,7 @@ public class UserDTO {
 	private int user_idx;
 	
 	@Size(min=2, max=4)
-	@Pattern(regexp="[가=힣]*")
+	@Pattern(regexp="[가-힣]*")
 	private String user_name;
 	
 	@Size(min=4, max=30)
@@ -24,4 +24,11 @@ public class UserDTO {
 	@Size(min=4, max=30)
 	@Pattern(regexp="[a-zA-Z0-9]*")
 	private String user_pw2;
+	
+	private boolean userIdExist;
+	
+	
+	
+	
+	
 }

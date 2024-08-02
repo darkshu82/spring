@@ -17,7 +17,6 @@ public class TopMenuService {
 	public List<BoardInfoDTO> getTopMenuList(){
 		// return topMenuMapper.getTopMenuList();
   	List<BoardInfoDTO> topMenuList = topMenuDAO.getTopMenuList();
-  	System.out.println("topMenuList (service) : " + topMenuList);
   	return topMenuList;
 	}
 	
