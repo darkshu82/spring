@@ -17,9 +17,18 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.tjoeun.interceptor.DeveloperInteceptor;
+import com.tjoeun.interceptor.OfficerInterceptor;
+import com.tjoeun.interceptor.SophomoreInterceptor;
 import com.tjoeun.interceptor.TopMenuInterceptor;
 import com.tjoeun.mapper.BoardMapper;
+import com.tjoeun.mapper.DeveloperMapper;
+import com.tjoeun.mapper.OfficerMapper;
+import com.tjoeun.mapper.SophomoreMapper;
 import com.tjoeun.mapper.TopMenuMapper;
+import com.tjoeun.service.DeveloperService;
+import com.tjoeun.service.OfficerService;
+import com.tjoeun.service.SophomoreService;
 import com.tjoeun.service.TopMenuService;
 
 
@@ -44,6 +53,15 @@ public class ServletAppContext implements WebMvcConfigurer{
 	
 	@Autowired
 	private TopMenuService topMenuService;
+	
+	@Autowired
+	private DeveloperService developerService;
+	
+	@Autowired
+	private OfficerService officerService;
+	
+	@Autowired
+	private SophomoreService sophomoreService;
 	
 	// Controller 의 메소드가 반환하는 jsp(view) 이름 앞뒤로
 	// 있는 경로의 접두사, 접미사 설정하기
@@ -99,6 +117,30 @@ public class ServletAppContext implements WebMvcConfigurer{
 		return factoryBean;
 	}
 	
+	@Bean
+	public MapperFactoryBean<DeveloperMapper> getDeveloperMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<DeveloperMapper> factoryBean = 
+				new MapperFactoryBean<>(DeveloperMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<OfficerMapper> getOfficerMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<OfficerMapper> factoryBean = 
+				new MapperFactoryBean<>(OfficerMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
+	@Bean
+	public MapperFactoryBean<SophomoreMapper> getSophomoreMapper(SqlSessionFactory factory) throws Exception{
+		MapperFactoryBean<SophomoreMapper> factoryBean = 
+				new MapperFactoryBean<>(SophomoreMapper.class);
+		factoryBean.setSqlSessionFactory(factory);
+		return factoryBean;
+	}
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		WebMvcConfigurer.super.addInterceptors(registry);
@@ -106,8 +148,23 @@ public class ServletAppContext implements WebMvcConfigurer{
 			InterceptorRegistration regi1 = registry.addInterceptor(topMenuInterceptor);
 			
 			regi1.addPathPatterns("/**"); 
+		
+		 DeveloperInteceptor developerInteceptor = new DeveloperInteceptor(developerService);
+			InterceptorRegistration regi2 = registry.addInterceptor(developerInteceptor);
+		
+			regi2.addPathPatterns("/**");
 			
+			OfficerInterceptor officerInterceptor = new OfficerInterceptor(officerService);
+  		InterceptorRegistration regi3 = registry.addInterceptor(officerInterceptor);
+  	
+  		regi3.addPathPatterns("/**");
+  		
+  		SophomoreInterceptor sophomoreInterceptor = new SophomoreInterceptor(sophomoreService);
+  		InterceptorRegistration regi4 = registry.addInterceptor(sophomoreInterceptor);
+  	
+  		regi4.addPathPatterns("/**"); 	
 	}
+	
 	
 }
 
