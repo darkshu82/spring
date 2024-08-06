@@ -77,6 +77,10 @@
         <mapping path="/**"/>
         <beans:bean class="com.tjoeun.interceptor.TopMenuInterceptor" />
       </interceptor>
+      <interceptor>
+        <mapping path="/**"/>
+        <beans:bean class="com.tjoeun.interceptor.DeveloperInterceptor" />
+      </interceptor>
     </interceptors>
     
     
